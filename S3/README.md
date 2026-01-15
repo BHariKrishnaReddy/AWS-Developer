@@ -77,14 +77,14 @@ For more please visit [docs.aws.amazon.com/AmazonS3/versioning-workflows](https:
 
 # How S3 Uploads Work
 
-This note explains **how uploads to Amazon S3 work**, including:
+**How uploads to Amazon S3 work**, including:
 - **Single PUT (PutObject)**
 - **Multipart Upload**
 - **S3 Transfer Acceleration** (and why it can help remote workers uploading large datasets)
 
 ---
 
-## 1) What “uploading to S3” means
+## What “uploading to S3” means
 
 At the protocol level, an S3 upload is an **authenticated HTTPS request** to an S3 endpoint that includes:
 
@@ -102,7 +102,7 @@ When S3 accepts an upload, it stores the object and returns metadata such as:
 
 ---
 
-## 2) Single PUT Upload (PutObject)
+## Single PUT Upload (PutObject)
 
 ### When to use
 - Small/medium objects
@@ -124,7 +124,7 @@ For many single PUT uploads, the **ETag often matches the MD5** of the payload (
 
 ---
 
-## 3) Multipart Upload (best for large files)
+## Multipart Upload (best for large files)
 
 Multipart upload splits a large object into **parts**, uploads parts independently (often **in parallel**), then tells S3 to assemble them into one final object.
 
@@ -168,7 +168,7 @@ It’s derived from the part ETags (a composite value).
 
 ---
 
-## 4) S3 Transfer Acceleration (how it works)
+## S3 Transfer Acceleration
 
 Transfer Acceleration is a bucket feature that lets clients upload to a special **accelerate endpoint**.
 Traffic goes:
@@ -185,7 +185,7 @@ This can reduce latency and improve throughput for long-distance uploads.
 
 ---
 
-## 5) Why Transfer Acceleration helps remote workers uploading large datasets
+## Why Transfer Acceleration helps remote workers uploading large datasets
 
 Remote workers often experience:
 - unpredictable public internet routing
@@ -206,7 +206,7 @@ AWS provides a **Transfer Acceleration speed comparison tool** to estimate wheth
 
 ---
 
-## 6) Quick decision rules
+## Quick decision rules
 
 - **Small files + stable network:** use **Single PUT (PutObject)**
 - **Large files (GBs) or unreliable networks:** use **Multipart Upload**
